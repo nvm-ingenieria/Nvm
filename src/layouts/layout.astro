@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '../components/Header.astro'
+import Header from "../components/Header.astro";
 ---
 
 <html lang="es">
@@ -9,6 +11,7 @@ import '../styles/global.css';
     <title><slot name="title" /></title>
 </head>
 <body class="bg-white text-neutral-900">
+<Header />
 <slot />
 </body>
 </html>
