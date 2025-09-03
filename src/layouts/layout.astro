@@ -3,6 +3,8 @@ import '../styles/global.css';
 import '../components/Header.astro'
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Contacto from "../components/Contacto.astro";
 ---
 
 <html lang="es">
@@ -12,9 +14,13 @@ import Footer from "../components/Footer.astro";
     <title><slot name="title" /></title>
 </head>
 <body class="bg-white text-neutral-900">
-<Header />
+    <Header />
 
-<Footer />
-<slot />
+    <Hero />
+
+    <Footer />
+
+    <Contacto/>
+    <slot />
 </body>
 </html>
