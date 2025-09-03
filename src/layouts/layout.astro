@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../components/Header.astro'
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="es">
@@ -12,6 +13,8 @@ import Header from "../components/Header.astro";
 </head>
 <body class="bg-white text-neutral-900">
 <Header />
+
+<Footer />
 <slot />
 </body>
 </html>
