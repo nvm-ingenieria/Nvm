@@ -15,12 +15,9 @@ import Contacto from "../components/Contacto.astro";
 </head>
 <body class="bg-white text-neutral-900">
     <Header />
-
-    <Hero />
-
+    <main>
+        <slot />
+    </main>
     <Footer />
-
-    <Contacto/>
-    <slot />
 </body>
 </html>
