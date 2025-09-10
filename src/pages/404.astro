@@ -4,31 +4,35 @@ import Layout from "../layouts/layout.astro";
 ---
 
  <Layout>
-     <div class="relative min-h-screen bg-[#f5d330] overflow-hidden">
-         <svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 120 120"
-              role="img"
-              aria-label="Enchufe macho diagonal"
-              class="absolute top-0 left-0 w-[clamp(300px,100vw,540px)] h-auto text-[#0a0a0a]">
-             data-type="power_plug" data-orientation="top_left">
-             <title id="t2">Enchufe macho diagonal (top-left, overflow)</title>
-             <desc id="d2">Cable recto 45° extendido más allá del lienzo.</desc>
+     <section class="bg-white dark:bg-black">
+         <div class="py-16 px-4 mx-auto max-w-screen-xl lg:px-6 h-screen lg:px-8">
+             <div class="mx-auto max-w-screen-sm h-screen text-center ">
+                 <!-- número de error -->
+                 <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-yellow-400">
+                     404
+                 </h1>
 
-             <!-- Cable largo: entra desde fuera y llega al conector -->
-             <line x1="-120" y1="-120" x2="20" y2="20"
-                   stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                 <!-- título -->
+                 <p class="mb-4 text-3xl tracking-tight font-bold text-black dark:text-white">
+                     ⚡ Circuito desconectado ⚡
+                 </p>
 
-             <!-- Conector rotado y alineado a la diagonal -->
-             <g transform="rotate(45 20 20)" fill="currentColor">
-                 <rect x="14" y="10" width="6" height="20" rx="3"/>
-                 <rect x="20" y="4"  width="28" height="32" rx="6"/>
-                 <rect x="48" y="10" width="14" height="6" rx="1"/>
-                 <rect x="48" y="24" width="14" height="6" rx="1"/>
-             </g>
-         </svg>
-         <section class="flex flex-col justify-center items-center min-h-screen">
-            <h1 class="text-9xl font-bold">404</h1>
-         </section>
-     </div>
+                 <!-- descripción -->
+                 <p class="mb-6 text-lg font-light text-gray-600 dark:text-gray-400">
+                     Lo sentimos, no encontramos la página que buscas.
+                     Vuelve al inicio o explora nuestro portafolio.
+                 </p>
+
+                 <!-- botón -->
+                 <a href="/"
+                    class="inline-flex items-center justify-center text-black bg-yellow-400 hover:bg-yellow-600
+                focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                dark:focus:ring-yellow-200 transition">
+                     Volver al inicio
+                 </a>
+             </div>
+         </div>
+     </section>
+
 
  </Layout>

@@ -1,48 +1,93 @@
 ---
-
+import '../styles/global.css';
 ---
-<section id="servicios" aria-labelledby="servicios-title" class="w-full min-h-screen flex flex-col justify-center items-center text-center px-4 bg-[#f5d330] relative overflow-hidden">
-    <h2 id="servicios-title">Servicios</h2>
 
-    <article>
-        <h3><strong>Diseño de tableros eléctricos</strong></h3>
-        <p>
-            Elaboramos <em>esquemas eléctricos</em> y <em>planos técnicos</em> para
-            <strong>sistemas de control, fuerza y distribución</strong>, cumpliendo normativa vigente y
-            priorizando seguridad y eficiencia.
-        </p>
-    </article>
+<section id="servicios" aria-labelledby="servicios-title" class="bg-gray-50 dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto">
+        <h2 id="servicios-title" class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">Explore nuestros <br> <span class="text-amarillonvm">servicios</span></h2>
 
-    <article>
-        <h3><strong>Fabricación y ensamblaje de tableros</strong></h3>
-        <p>
-            Montaje profesional de tableros eléctricos con <strong>materiales certificados</strong>;
-            realizamos <em>pruebas minuciosas</em> para garantizar el correcto funcionamiento en campo.
-        </p>
-    </article>
+        <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
+            <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-200 rounded-xl dark:bg-gray-800">
+                <span class="inline-block p-3 rounded-full text-negro  bg-amarillonvm dark:bg-gray-600 dark:text-amarillonvm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                </span>
+                    <article>
+                        <h3 class="text-xl font-semibold text-gray-700 capitalize dark:text-white"><strong>Diseño de tableros eléctricos</strong></h3>
 
-    <article>
-        <h3><strong>Automatización y control (PLC / HMI)</strong></h3>
-        <p>
-            Implementamos soluciones de <em>automatización industrial</em> con PLC y HMI
-            para <strong>mejorar la eficiencia de procesos</strong> y la disponibilidad operativa.
-        </p>
-    </article>
+                        <p class=" pt-2 text-gray-500 dark:text-gray-300">
+                            Elaboramos <em>esquemas eléctricos</em> y <em>planos técnicos</em> para
+                            <strong>sistemas de control, fuerza y distribución</strong>, cumpliendo normativa vigente y
+                            priorizando seguridad y eficiencia.
+                        </p>
+                    </article>
+            </div>
 
-    <article>
-        <h3><strong>Mantenimiento y servicio postventa</strong></h3>
-        <p>
-            <em>Mantenimiento preventivo y correctivo</em> con personal capacitado para
-            <strong>diagnosticar y resolver eventualidades técnicas</strong> que afecten el rendimiento
-            de equipos e instalaciones.
-        </p>
-    </article>
+            <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-200 rounded-xl dark:bg-gray-800">
+                <span class="inline-block p-3 rounded-full text-negro  bg-amarillonvm dark:bg-gray-600 dark:text-amarillonvm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                </span>
+                    <article>
+                        <h3 class="text-xl font-semibold text-gray-700 capitalize dark:text-white"><strong>Fabricación y ensamblaje de tableros</strong></h3>
 
-    <article>
-        <h3><strong>Fabricación de marquillas para cableado y tableros</strong></h3>
-        <p>
-            <em>Corte y grabado láser</em> de marquillas para identificación de cables, componentes y
-            tableros, según <strong>normativa técnica</strong>.
-        </p>
-    </article>
+                        <p class="text-gray-500 dark:text-gray-300">
+                            Montaje profesional de tableros eléctricos con <strong>materiales certificados</strong>;
+                            realizamos <em>pruebas minuciosas</em> para garantizar el correcto funcionamiento en campo.
+                        </p>
+                    </article>
+            </div>
+
+            <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-200 rounded-xl dark:bg-gray-800">
+                <span class="inline-block p-3 rounded-full text-negro  bg-amarillonvm dark:bg-gray-600 dark:text-amarillonvm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                </span>
+                    <article>
+                        <h3 class="text-xl font-semibold text-gray-700 capitalize dark:text-white"><strong>Automatización y control (PLC / HMI)</strong></h3>
+
+                        <p class="text-gray-500 dark:text-gray-300">
+                            Implementamos soluciones de <em>automatización industrial</em> con PLC y HMI
+                            para <strong>mejorar la eficiencia de procesos</strong> y la disponibilidad operativa.
+                        </p>
+                    </article>
+            </div>
+
+            <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-200 rounded-xl dark:bg-gray-800">
+                <span class="inline-block p-3 rounded-full text-negro  bg-amarillonvm dark:bg-gray-600 dark:text-amarillonvm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                </span>
+                <article>
+                    <h3 class="text-xl font-semibold text-gray-700 capitalize dark:text-white"><strong>Mantenimiento y servicio postventa</strong></h3>
+
+                    <p class=" pt-2 text-gray-500 dark:text-gray-300">
+                        <em>Mantenimiento preventivo y correctivo</em> con personal capacitado para
+                        <strong>diagnosticar y resolver eventualidades técnicas</strong> que afecten el rendimiento
+                        de equipos e instalaciones.
+                    </p>
+                </article>
+            </div>
+
+            <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-200 rounded-xl dark:bg-gray-800">
+                <span class="inline-block p-3 rounded-full text-negro  bg-amarillonvm dark:bg-gray-600 dark:text-amarillonvm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                </span>
+                <article>
+                    <h3 class="text-xl font-semibold text-gray-700 capitalize dark:text-white"><strong>Fabricación de marquillas para cableado y tableros</strong></h3>
+
+                    <p class=" pt-2 text-gray-500 dark:text-gray-300">
+                        <em>Corte y grabado láser</em> de marquillas para identificación de cables, componentes y
+                        tableros, según <strong>normativa técnica</strong>.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </div>
 </section>

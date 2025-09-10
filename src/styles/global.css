@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+
+    /* Colores principales */
+
+    --color-blanco: #fefdfc;
+    --color-amarillonvm: #f5d330;
+    --color-negro: #0a0a0a;
+
+    /* Variacion amarillo*/
+
+    --color-amarillohover: #d9b800;
+    --color-amarillohoverdark: #ffe75f;
+    --color-amarillopalido: #fff8d1;
+
+    /* Neutros oscuros */
+
+    --color-grisoscuro: #1c1c1c ;
+    --color-grisneutro: #3f3f3f;
+    --color-grismedio: #5c5c5c;
+
+    /* Neutros claros */
+
+    --color-grisclaro: #f4f4f4;
+    --color-grisclaroneutro:  #d4d4d4;
+    --color-grisfrio:  #e5e5e5;
+
+}
