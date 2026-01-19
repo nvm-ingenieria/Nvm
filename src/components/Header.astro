@@ -1,25 +1,18 @@
 ---
 
     import '../styles/global.css';
-    import Logo from '../../public/NVMlogo.svg';
-    import LogoDark from '../../public/NVMlogoblanco.svg';
+    import { getCollection } from "astro:content";
 
-    const families = [
-        { name: "Tableros de Distribucion", slug: "Tableros-Distribucion" },
-        { name: "Transferencias Automáticas", slug: "Transferencias-Automáticas" },
-        { name: "Tableros para Bancos de Condensadores", slug: "Bancos-Condensadores" },
-        { name: "CCM Centro de Control de Motores", slug: "ccm-control-motores" },
-        { name: "Celdas AE319", slug: "Celdas-AE319" },
-        { name: "Tableros de sincronismos", slug: "Tableros-Sincronismos" },
-    ];
+    const familias = await getCollection("familias");
+    familias.sort((a, b) => a.data.title.localeCompare(b.data.title, "es"));
 ---
 
 <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-transform duration-300 bg-gray-50 dark:text-white dark:bg-gray-900">
-    <nav class="max-w-7xl mx-auto h-16 px-4 flex items-center justify-between">
+    <nav class="mx-auto max-w-7xl px-4 h-14 md:h-16 lg:h-20 flex items-center justify-between">
         <a href="/" class="inline-flex items-center shrink-0" aria-label="Inicio">
 
-            <img class="h-120 w-auto block dark:hidden mt-7 decoding="async" loading="eager" src="/NVMlogo.svg" alt="NVM Logo" "/>
-            <img class="h-120 w-auto hidden dark:block mt-7" src="/NVMlogoblanco.svg" alt="NVM Logo" />
+            <img class="block dark:hidden w-auto h-14 md:h-16 lg:h-18" decoding="async" loading="eager" src="/NVMlogo.svg" alt="NVM Logo"/>
+            <img class="dark:block hidden w-auto h-14 md:h-16 lg:h-18" decoding="async" loading="eager" src="/NVMlogoblanco.svg" alt="NVM Logo" />
 
         </a>
 
@@ -28,20 +21,42 @@
             <li><a href="#servicios" class="hover:text-amarillonvm">Servicios</a></li>
             <li><a href="#quienes-somos" class="hover:text-amarillonvm">Quiénes somos</a></li>
             <li class="relative">
-
-                <button id="desktop-familias-btn" type="button" aria-expanded="false" class="inline-flex items-center hover:text-amarillonvm focus:outline-none">
+                <button
+                        id="desktop-familias-btn"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="desktop-familias-menu"
+                        class="inline-flex items-center gap-1 rounded-full px-3 py-1.5
+                        hover:bg-black/5 dark:hover:bg-white/10 hover:text-amarillonvm transition"
+                >
                     Portafolio
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
 
-                <div id="desktop-familias-menu" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg border bg-gray-50 dark:bg-gray-800 dark:border-gray-700 z-10">
-                    {families.map((fam) => (
-                            <a href={`/familias/${fam.slug}`} class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-amarillonvm" key={fam.slug}>{fam.name}</a>
-                    ))}
+                <div
+                        id="desktop-familias-menu"
+                        class="hidden absolute right-0 top-full mt-2 w-72 rounded-2xl shadow-xl border
+                           bg-white/95 dark:bg-gray-900/95 backdrop-blur
+                           border-black/10 dark:border-white/10 z-50"
+                >
+                    <div class="p-2 max-h-80 overflow-auto">
+                        {familias.map((f) => (
+                                <a
+                                        href={`/familias/${f.slug}`}
+                                        class="block rounded-xl px-3 py-2 text-sm
+                                         hover:bg-black/5 dark:hover:bg-white/10
+                                         focus:outline-none focus-visible:ring-2 focus-visible:ring-amarillonvm"
+                                >
+                                    {f.data.title}
+                                </a>
+                        ))}
+                    </div>
                 </div>
             </li>
+
+
             <li><a href="#contacto" class="hover:text-amarillonvm">Contacto</a></li>
         </ul>
 
@@ -69,8 +84,8 @@
                 <details>
                     <summary class="cursor-pointer py-2 select-none">Portafolio</summary>
                     <div class="pl-4 space-y-2 mt-2">
-                        {families.map((fam) => (
-                                <a href={`/familias/${fam.slug}`} class="block">{fam.name}</a>
+                        {familias.map((f) => (
+                                <a href={`/familias/${f.slug}`} class="block">{f.data.title}</a>
                         ))}
                     </div>
                 </details>
@@ -81,55 +96,150 @@
 
 
     <script is:inline>
-        (function() {
-
+        (function () {
+            // =========================
+            // MOBILE MENU
+            // =========================
             const mobileBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const iconHamburger = document.getElementById('icon-hamburger');
             const iconClose = document.getElementById('icon-close');
+
             let mobileOpen = false;
-            mobileBtn.addEventListener('click', () => {
-                mobileOpen = !mobileOpen;
+
+            function setMobile(open) {
+                mobileOpen = open;
+                if (!mobileMenu) return;
                 mobileMenu.classList.toggle('hidden', !mobileOpen);
-                iconHamburger.classList.toggle('opacity-0', mobileOpen);
-                iconHamburger.classList.toggle('scale-75', mobileOpen);
-                iconClose.classList.toggle('opacity-0', !mobileOpen);
-                iconClose.classList.toggle('scale-75', !mobileOpen);
-            });
 
+                if (iconHamburger && iconClose) {
+                    iconHamburger.classList.toggle('opacity-0', mobileOpen);
+                    iconHamburger.classList.toggle('scale-75', mobileOpen);
+                    iconClose.classList.toggle('opacity-0', !mobileOpen);
+                    iconClose.classList.toggle('scale-75', !mobileOpen);
+                }
+            }
 
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => setMobile(!mobileOpen));
+
+                // Cerrar cuando se hace click en cualquier link del menú (anchors)
+                mobileMenu.addEventListener('click', (e) => {
+                    const a = e.target && e.target.closest ? e.target.closest('a') : null;
+                    if (a) setMobile(false);
+                });
+            }
+
+            // =========================
+            // DESKTOP PORTAFOLIO MENU (hover estable + click)
+            // =========================
             const famBtn = document.getElementById('desktop-familias-btn');
             const famMenu = document.getElementById('desktop-familias-menu');
-            famBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const expanded = famBtn.getAttribute('aria-expanded') === 'true';
-                famBtn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                famMenu.classList.toggle('hidden', expanded);
-            });
 
-            document.addEventListener('click', (e) => {
-                if (!famMenu.contains(e.target) && !famBtn.contains(e.target)) {
-                    famMenu.classList.add('hidden');
-                    famBtn.setAttribute('aria-expanded', 'false');
+            if (famBtn && famMenu) {
+                const wrapper = famBtn.closest('li') || famBtn.parentElement;
+                const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+                let closeTimer = null;
+
+                function openMenu() {
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+                    famBtn.setAttribute('aria-expanded', 'true');
+                    famMenu.classList.remove('hidden');
                 }
-            });
 
+                function closeMenuDelayed() {
+                    if (closeTimer) clearTimeout(closeTimer);
+                    closeTimer = setTimeout(() => {
+                        famBtn.setAttribute('aria-expanded', 'false');
+                        famMenu.classList.add('hidden');
+                        closeTimer = null;
+                    }, 150); // clave: tolera el "gap"
+                }
 
+                function closeMenuNow() {
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+                    famBtn.setAttribute('aria-expanded', 'false');
+                    famMenu.classList.add('hidden');
+                }
+
+                function toggleMenu() {
+                    const expanded = famBtn.getAttribute('aria-expanded') === 'true';
+                    expanded ? closeMenuNow() : openMenu();
+                }
+
+                // Cerrar al hacer click en un item del dropdown
+                famMenu.addEventListener('click', (e) => {
+                    const a = e.target && e.target.closest ? e.target.closest('a') : null;
+                    if (a) closeMenuNow();
+                });
+
+                // Escape para cerrar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeMenuNow();
+                });
+
+                if (canHover && wrapper) {
+                    // Hover: abrir al entrar, cerrar con delay al salir
+                    wrapper.addEventListener('mouseenter', openMenu);
+                    wrapper.addEventListener('mouseleave', closeMenuDelayed);
+
+                    // Si el mouse entra al menú, cancela el cierre (por el gap)
+                    famMenu.addEventListener('mouseenter', openMenu);
+                    famMenu.addEventListener('mouseleave', closeMenuDelayed);
+
+                    // Click también funciona (por accesibilidad)
+                    famBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleMenu();
+                    });
+                } else {
+                    // Touch/tablet: solo click
+                    famBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleMenu();
+                    });
+
+                    // Click fuera cierra
+                    document.addEventListener('click', (e) => {
+                        if (!famMenu.contains(e.target) && !famBtn.contains(e.target)) closeMenuNow();
+                    });
+                }
+            }
+
+            // =========================
+            // HEADER HIDE ON SCROLL (igual, pero cierra mobile si se oculta)
+            // =========================
             const header = document.getElementById('site-header');
             let lastScroll = window.scrollY;
             let ticking = false;
+
             function handleScroll() {
                 const current = window.scrollY;
-                if (current > lastScroll && current > 50) {
 
-                    header.style.transform = 'translateY(-100%)';
-                } else {
+                if (header) {
+                    if (current > lastScroll && current > 50) {
+                        header.style.transform = 'translateY(-100%)';
 
-                    header.style.transform = '';
+                        // Si el header se oculta, no dejes el panel mobile abierto "flotando"
+                        if (mobileOpen) setMobile(false);
+                    } else {
+                        header.style.transform = '';
+                    }
                 }
+
                 lastScroll = current;
                 ticking = false;
             }
+
             window.addEventListener('scroll', () => {
                 if (!ticking) {
                     window.requestAnimationFrame(handleScroll);
@@ -138,5 +248,6 @@
             });
         })();
     </script>
+
 </header>
 

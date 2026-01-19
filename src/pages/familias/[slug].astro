@@ -1,0 +1,275 @@
+---
+import Layout from "../../layouts/layout.astro";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+type Familia = CollectionEntry<"familias">;
+
+export async function getStaticPaths() {
+    const entries = await getCollection("familias");
+    return entries.map((e) => ({ params: { slug: e.slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("familias", slug as Familia["slug"]);
+
+if (!entry) {
+    Astro.response.status = 404;
+}
+
+const {
+    title,
+    excerpt,
+    description,
+    cover,
+    productos = [],
+} = entry!.data;
+
+
+const shortDesc =
+    excerpt ??
+    (description ? description.replace(/\s+/g, " ").trim().slice(0, 160) + "…" : "");
+
+
+const longDesc = description ?? "";
+
+
+const WHATSAPP_PHONE = "573150032747";
+const rawMsg =
+    entry!.data.whatsappMessage ??
+    `Hola, me interesa cotizar la familia ${title}.`;
+const pageUrl =
+    Astro.site
+        ? new URL(`/familias/${slug}`, Astro.site).href
+        : `/familias/${slug}`;
+const finalMsg = rawMsg
+    .replace("{familia}", title)
+    .replace("{slug}", slug!)
+    .replace("{url}", pageUrl);
+const waHref = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(finalMsg)}`;
+
+const coverUrl = cover?.src ?? "/fallback.jpg";
+
+// JSON-LD breadcrumbs
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": Astro.site ? new URL("/", Astro.site).href : "/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Familias",
+            "item": Astro.site ? new URL("/familias", Astro.site).href : "/familias"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": title,
+            "item": Astro.site ? new URL(`/familias/${slug}`, Astro.site).href : `/familias/${slug}`
+        }
+    ]
+};
+const specs = entry!.data.especificaciones;
+---
+
+<Layout title={`${title} | NVM`} description={shortDesc}>
+    <!-- HERO -->
+    <header class="relative isolate overflow-hidden">
+        <div class="absolute inset-0 ">
+            <img
+                    src={coverUrl}
+                    alt={title}
+                    class="w-full h-full md:h-[48svh] object-cover block"
+                    loading="eager"
+                    decoding="async"
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 py-10 md:py-14 text-white">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center justify-between gap-4 text-sm text-white/90">
+                <ol class="flex items-center gap-2">
+                    <li><a href="/" class="hover:underline">Inicio</a></li>
+                    <li aria-hidden="true">/</li>
+                    <li><a href="/#portafolio" class="hover:underline">Portafolio</a></li>
+                    <li aria-hidden="true">/</li>
+                    <li aria-current="page" class="font-medium text-white">{title}</li>
+                </ol>
+
+                <a href="/#portafolio"
+                   class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/20 hover:bg-white/15 transition">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Volver
+                </a>
+            </nav>
+
+
+
+
+            <h1 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">{title}</h1>
+            {shortDesc && (
+                    <p class="mt-3 max-w-3xl text-base md:text-lg text-white/90">
+                        {shortDesc}
+                    </p>
+            )}
+
+
+            <div class="mt-6 flex flex-wrap gap-3">
+                <a href={waHref}
+                   target="_blank"
+                   rel="noopener"
+                   aria-label={`Chatear por WhatsApp sobre ${title}`}
+                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amarillonvm text-black font-semibold hover:brightness-95 transition">
+                    <svg class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                        <path d="M19.11 17.17c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.35-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29 0 1.35.99 2.66 1.13 2.84.14.18 1.95 2.98 4.73 4.18.66.29 1.17.46 1.57.59.66.21 1.26.18 1.74.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/>
+                        <path d="M16 3C8.83 3 3 8.83 3 16c0 2.25.6 4.36 1.65 6.2L3 29l7-1.6A12.9 12.9 0 0 0 16 29c7.17 0 13-5.83 13-13S23.17 3 16 3zm0 23.5c-2.1 0-4.05-.62-5.68-1.68l-.41-.26-4.14.95.9-4.03-.27-.42A10.4 10.4 0 0 1 5.6 16C5.6 10.27 10.27 5.6 16 5.6S26.4 10.27 26.4 16 21.73 26.5 16 26.5z"/>
+                    </svg>
+                    Cotizar esta familia
+                </a>
+
+                <a href="#productos"
+                   class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white/10 ring-1 ring-white/20 hover:bg-white/15 transition">
+                    Ver servicios
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="container mx-auto px-4">
+        <section class="py-10 md:py-14">
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8 dark:text-blanco">
+                    <h2 class="text-2xl md:text-3xl font-semibold">Descripción general</h2>
+                    {description && (
+                            <p class="mt-3 text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                                {description}
+                            </p>
+                    )}
+                </div>
+                <aside class="lg:col-span-4">
+                    <div class="rounded-2xl ring-1 ring-black/10 dark:ring-white/10 dark:text-gray-300 p-5">
+                        <h3 class="font-semibold">¿Necesitas asesoría?</h3>
+                        <p class="text-sm mt-1 text-neutral-600 dark:text-neutral-400">
+                            Nuestro equipo te ayuda a elegir el tablero adecuado según tu proyecto.
+                        </p>
+                        <a href="/#contacto" class="inline-flex mt-4 px-4 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:opacity-90 transition">
+                            Contáctanos
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        {specs && (
+                <section class="py-10 md:py-12 dark:text-blanco ">
+                    <h2 class="text-2xl md:text-3xl font-semibold">Especificaciones</h2>
+
+                    <div class="mt-6 grid gap-6 md:grid-cols-3">
+                        <div class="rounded-2xl ring-1 ring-black/10 dark:ring-white/10 p-5 bg-white dark:bg-gray-800">
+                            <h3 class="font-semibold text-lg mb-3">Características eléctricas</h3>
+                            <dl class="space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+                                <div class="flex justify-between gap-3"><dt>Tensión nominal</dt><dd class="font-medium">{specs.electrica?.tension_nominal}</dd></div>
+                                <div class="flex justify-between gap-3"><dt>Corriente nominal</dt><dd class="font-medium">{specs.electrica?.corriente_nominal}</dd></div>
+                                <div class="flex justify-between gap-3"><dt>Cortocircuito</dt><dd class="font-medium">{specs.electrica?.cortocircuito}</dd></div>
+                            </dl>
+                        </div>
+
+                        <div class="rounded-2xl ring-1 ring-black/10 dark:ring-white/10 p-5 bg-white dark:bg-gray-800">
+                            <h3 class="font-semibold text-lg mb-3">Características mecánicas</h3>
+                            <dl class="space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+                                <div class="flex justify-between gap-3"><dt>Grado de protección</dt><dd class="font-medium">{specs.mecanica?.grado_ip}</dd></div>
+                                <div class="flex justify-between gap-3"><dt>Resistencia al impacto</dt><dd class="font-medium">{specs.mecanica?.impacto_ik}</dd></div>
+                                <div class="flex justify-between gap-3"><dt>Cámara salina</dt><dd class="font-medium">{specs.mecanica?.camara_salina}</dd></div>
+                            </dl>
+                        </div>
+
+                        <div class="rounded-2xl ring-1 ring-black/10 dark:ring-white/10 p-5 bg-white dark:bg-gray-800">
+                            <h3 class="font-semibold text-lg mb-3">Usos y condiciones</h3>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
+                                {Array.isArray(specs.usos) && specs.usos.map((u) => <li>{u}</li>)}
+                                {Array.isArray(specs.condiciones) && specs.condiciones.map((c) => <li>{c}</li>)}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        )}
+        <section id="productos" class="py-10 md:py-14 dark:text-blanco ">
+            <h2 class="text-2xl md:text-3xl font-semibold">Servicios</h2>
+
+            {productos.length === 0 ? (
+                    <p class="mt-4 text-neutral-600 dark:text-neutral-400">
+                        Pronto añadiremos los servicios de esta familia.
+                    </p>
+            ) : (
+                    <ul class="mt-6 space-y-8 md:space-y-10">
+                        {productos.map((p, i) => {
+                            const isContain = p.fit === "contain";
+
+                            return (
+                                    <li class="rounded-2xl ring-1 ring-black/10 dark:ring-white/10 shadow-sm p-3 md:p-4 dark:bg-gray-800 dark:text-blanco">
+                                        <div class="grid items-center gap-6 md:gap-8 lg:grid-cols-12">
+                                            <div class={`${i % 2 === 0 ? "order-1 lg:order-2" : "order-1 lg:order-1"} lg:col-span-7`}>
+                                                <div class="relative rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+                                                    <div class="relative aspect-[16/9] sm:aspect-[3/2] md:aspect-[16/9]">
+                                                        {p.imagen ? (
+                                                                <Image
+                                                                        src={p.imagen}
+                                                                        alt={p.nombre}
+                                                                        loading="lazy"
+                                                                        decoding="async"
+                                                                        class={`absolute inset-0 block w-full h-full ${
+                                                                            isContain ? "object-contain" : "object-cover"
+                                                                        }`}
+                                                                        sizes="(min-width: 1024px) 700px, (min-width: 640px) 90vw, 100vw"
+                                                                />
+                                                        ) : (
+                                                                <img
+                                                                        src="https://picsum.photos/1200/800?blur=0"
+                                                                        alt={p.nombre}
+                                                                        loading="lazy"
+                                                                        decoding="async"
+                                                                        class={`absolute inset-0 block w-full h-full ${
+                                                                            isContain ? "object-contain" : "object-cover"
+                                                                        }`}
+                                                                        sizes="(min-width: 1024px) 700px, (min-width: 640px) 90vw, 100vw"
+                                                                />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class={`${i % 2 === 0 ? "order-2 lg:order-1" : "order-2 lg:order-2"} lg:col-span-5`}>
+                                                <h3 class="text-xl md:text-2xl font-semibold">{p.nombre}</h3>
+                                                {p.descripcion && (
+                                                        <p class="mt-2 text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                                                            {p.descripcion}
+                                                        </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </li>
+                            );
+                        })}
+                    </ul>
+            )}
+        </section>
+
+    </main>
+
+    <script
+            type="application/ld+json"
+            set:html={JSON.stringify(jsonLd)}
+    ></script>
+</Layout>

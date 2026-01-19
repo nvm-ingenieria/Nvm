@@ -1,22 +1,37 @@
 ---
 import '../styles/global.css';
 import Layout from "../layouts/layout.astro";
-import Hero from "../components/Hero.astro";
 import Servicios from "../components/Servicios.astro";
 import Empresa from "../components/Empresa.astro";
-import Familias from "../components/Familias.astro";
 import Contacto from "../components/Contacto.astro";
 import Header from "../components/Header.astro";
-import Hero2 from "../components/Hero2.astro";
-import Cards from "../components/Cards.astro";
+import Hero from "../components/Hero.astro";
+import Carrusel from "../components/Carrusel.astro";
+import { getCollection } from "astro:content";
+
+const familias = await getCollection("familias");
+const items = familias.map(({ slug, data }) => ({
+    title: data.title,
+    description: data.excerpt ?? "",
+    cover: data.cover,
+    href: `/familias/${slug}`,
+}));
+
 ---
 
-<Layout>
+<Layout title="NVM | Ingeniería en Tableros" description="Soluciones eléctricas a medida">
     <Header />
-    <Hero2 />
+    <Hero />
     <Servicios/>
     <Empresa/>
-    <Cards/>
+    <section id="portafolio" class="py-16 dark:bg-gray-900">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 lg:text-3xl dark:text-white">Familias de Productos</h2>
+        <p class="text-center text-neutral-600 dark:text-neutral-400 mt-2">Explora nuestras líneas de tableros</p>
+
+        <div class="mt-8 container mx-auto px-4">
+            <Carrusel items={items} ariaLabel="Carrusel de familias" delay={2500} />
+        </div>
+    </section>
     <Contacto />
 
 </Layout>

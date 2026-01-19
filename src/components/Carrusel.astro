@@ -1,0 +1,90 @@
+---
+import Card from "./Card.astro";
+import type { ImageMetadata } from "astro";
+
+interface Item {
+    title: string;
+    description?: string;
+    cover?: ImageMetadata;
+    href?: string;
+}
+interface Props {
+    items: Item[];
+    ariaLabel?: string;
+    delay?: number;
+}
+const { items = [], ariaLabel = "Carrusel de familias", delay = 3200 } = Astro.props;
+---
+
+{items.length === 0 ? (
+<div class="text-center text-neutral-500 dark:text-neutral-400">
+    Aún no hay familias para mostrar.
+</div>
+    ) : (
+<section class="relative" aria-label={ariaLabel} data-embla data-delay={String(delay)}>
+    <div
+            class="overflow-hidden"
+            data-embla-viewport
+            aria-roledescription="carrusel"
+            aria-live="polite"
+    >
+        <div class="flex pl-4 pr-4 md:pl-5 md:pr-5" data-embla-container>
+            {items.map((it) => (
+                    <div
+                            class="shrink-0 basis-full md:basis-[33.3333%] mr-4 md:mr-5 last:mr-0"
+                            data-embla-slide
+                    >
+                        <div class="slide-inner h-full rounded-2xl overflow-hidden transition-transform duration-300 will-change-transform">
+                            <Card {...it} />
+                        </div>
+                    </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="mt-6 flex items-center justify-center gap-2 relative z-10">
+        <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full px-3 py-2
+           bg-white/80 dark:bg-gray-800/70 backdrop-blur
+           ring-1 ring-black/10 dark:ring-white/10
+           text-neutral-900 dark:text-white
+           hover:ring-black/20 dark:hover:ring-white/20
+           disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Anterior"
+                data-embla-prev
+        >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+
+        <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full px-3 py-2
+           bg-white/80 dark:bg-gray-800/70 backdrop-blur
+           ring-1 ring-black/10 dark:ring-white/10
+           text-neutral-900 dark:text-white
+           hover:ring-black/20 dark:hover:ring-white/20
+           disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Siguiente"
+                data-embla-next
+        >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+
+
+    <style is:global>
+        [data-embla] [data-embla-slide] .slide-inner { transform: scale(1); }
+        [data-embla] [data-embla-slide][data-selected="true"] .slide-inner {
+            transform: scale(1.05);
+            filter: drop-shadow(0 10px 24px rgba(0,0,0,.18));
+        }
+    </style>
+</section>
+
+    )}

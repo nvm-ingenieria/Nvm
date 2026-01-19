@@ -1,19 +1,17 @@
 ---
-import '../styles/global.css';
-import '../components/Header.astro'
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
-import Contacto from "../components/Contacto.astro";
-import Servicios from "../components/Servicios.astro";
 import WhatsappButton from "../components/WhatsappButton.astro";
+
+const { title, description } = Astro.props;
+
 ---
 
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><slot name="title" /></title>
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
     <script is:inline>
         (function () {
             const pref = localStorage.getItem('theme'); // 'light' | 'dark' | null
@@ -23,10 +21,17 @@ import WhatsappButton from "../components/WhatsappButton.astro";
             }
         })();
     </script>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NVM" />
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
-<body class="bg-white text-neutral-900">
+<body class="bg-white text-neutral-900 dark:bg-gray-900">
 
     <main>
+
         <slot />
     </main>
     <Footer />
@@ -34,5 +39,7 @@ import WhatsappButton from "../components/WhatsappButton.astro";
             phone="+57 315 003 2747"
             message="Hola, me interesa cotizar un tablero eléctrico."
     />
-</body>
+    <script>
+        import "../scripts/embla-init";
+    </script></body>
 </html>
