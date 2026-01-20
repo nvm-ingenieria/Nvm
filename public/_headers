@@ -1,2 +1,18 @@
 /*
+  # STAGING: bloquear indexación (QUITA estas 2 líneas en producción final)
   X-Robots-Tag: noindex, nofollow
+
+  # Seguridad / baseline
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+  # Anti-clickjacking (equivalente a frame-ancestors 'none')
+  X-Frame-Options: DENY
+
+  # COOP: aislar browsing context (mejora seguridad; si embebes cosas raras, revisa)
+  Cross-Origin-Opener-Policy: same-origin
+
+  # CORP: evita que otros sitios “usen” tus recursos
+  Cross-Origin-Resource-Policy: same-origin
