@@ -1,5 +1,4 @@
 ---
-import '../styles/global.css';
 import Layout from "../layouts/layout.astro";
 import Servicios from "../components/Servicios.astro";
 import Empresa from "../components/Empresa.astro";
@@ -19,7 +18,11 @@ const items = familias.map(({ slug, data }) => ({
 
 ---
 
-<Layout title="NVM | Ingeniería en Tableros" description="Soluciones eléctricas a medida">
+<Layout
+        title="Tableros eléctricos a medida en Bogotá | NVM Ingeniería"
+        description="Diseño y fabricación de tableros eléctricos: distribución/potencia, CCM, control, ATS (transferencias), bancos de condensadores y medición. Cotiza."
+        canonical="/"
+>
     <Header />
     <Hero />
     <Servicios/>

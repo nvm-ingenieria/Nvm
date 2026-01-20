@@ -13,7 +13,7 @@ especificaciones:
     corriente_nominal: "Hasta 2500 A"
     cortocircuito: "Hasta 65 kA"
   mecanica:
-    grado_ip: "Hasta IP66"
+    grado_ip: "Hasta IP66"  
     impacto_ik: "Hasta IK10"
     camara_salina: "400 horas"
   usos:
@@ -34,5 +34,9 @@ productos:
   - nombre: "Tablero de Señalización y Monitoreo (Alarmas / HMI)"
     descripcion: "Diseñado para centralizar señales, estados y alarmas de equipos o procesos. Integra indicadores, selectores, avisos y, si aplica, HMI para supervisión local, dejando el cableado claramente identificado para mantenimiento rápido. Prioriza visibilidad operativa y diagnóstico, ayudando a detectar fallas y actuar más rápido en campo."
     imagen: "../../assets/Control/TableroDistribucionControlDeMotores.jpeg"
+
+seo:
+  title: "Tableros de control y automatización PLC/HMI | NVM"
+  description: "Tableros de control para automatización y mando: relés, protecciones, PLC/HMI e instrumentación. Cableado ordenado y mantenible."
 
 ---

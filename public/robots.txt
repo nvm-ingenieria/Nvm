@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# IMPORTANTE: ajusta el dominio al real
+Sitemap: https://nvmtableros.com/sitemap-index.xml

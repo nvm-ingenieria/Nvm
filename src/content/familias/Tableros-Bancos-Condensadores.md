@@ -33,4 +33,9 @@ productos:
   - nombre: "Banco de Condensadores Antiarmónico (Detuned)"
     descripcion: "Recomendado cuando la red incluye equipos que generan armónicos, como variadores de velocidad (VFD), UPS, iluminación LED en gran escala o electrónica de potencia. Integra reactancias de rechazo para disminuir riesgos de resonancia, sobrecorrientes y sobrecargas en los capacitores, elevando la confiabilidad del banco. Ideal para proyectos donde se busca compensación con mayor seguridad eléctrica en condiciones de operación exigentes."
     imagen: "../../assets/BancoDeCondesadores/BancoDeCondensadoresExterior4.jpeg"
+
+seo:
+  title: "Tableros para banco de condensadores kVAR | NVM"
+  description: "Corrección de factor de potencia y compensación de reactiva. Bancos fijos, automáticos por etapas y antiarmónicos (detuned)."
+
 ---

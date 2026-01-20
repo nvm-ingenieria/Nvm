@@ -34,6 +34,10 @@ productos:
   - nombre: "Transferencia con Enclavamiento Mecánico y Distribución"
     descripcion: "Diseñado para transferencias con un enfoque de seguridad mecánica y operación clara en campo. Integra un sistema de enclavamiento mecánico que evita paralelismo no deseado entre fuentes, junto con elementos de distribución y protecciones según el alcance. Prioriza seguridad, orden y mantenibilidad, recomendado cuando se requiere una solución directa y altamente controlada."
     imagen: "../../assets/TransferenciasAutomaticas/TransferenciaAutomaticaFrenteMuerto4.jpeg"
+    
+seo:
+  title: "Tableros ATS de transferencia automática | NVM"
+  description: "Tableros ATS para conmutar entre red–planta o red–red. Maniobra, protecciones y control a medida para continuidad del servicio."
 
 ---
 

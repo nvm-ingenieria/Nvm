@@ -23,8 +23,8 @@ const {
     description,
     cover,
     productos = [],
-} = entry!.data;
-
+    seo,
+} = entry!.data as any;
 
 const shortDesc =
     excerpt ??
@@ -38,10 +38,12 @@ const WHATSAPP_PHONE = "573150032747";
 const rawMsg =
     entry!.data.whatsappMessage ??
     `Hola, me interesa cotizar la familia ${title}.`;
+
 const pageUrl =
     Astro.site
         ? new URL(`/familias/${slug}`, Astro.site).href
         : `/familias/${slug}`;
+
 const finalMsg = rawMsg
     .replace("{familia}", title)
     .replace("{slug}", slug!)
@@ -50,35 +52,43 @@ const waHref = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(finalM
 
 const coverUrl = cover?.src ?? "/fallback.jpg";
 
+const metaTitle = seo?.title ?? `${title} | NVM`;
+const metaDescription = seo?.description ?? shortDesc;
+const metaCanonical = seo?.canonical ?? `/familias/${slug}`;
+const metaOgImage = seo?.ogImage ?? coverUrl;
+
 // JSON-LD breadcrumbs
+const base = Astro.site ?? Astro.url;
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
         {
             "@type": "ListItem",
-            "position": 1,
-            "name": "Inicio",
-            "item": Astro.site ? new URL("/", Astro.site).href : "/"
+            position: 1,
+            name: "Inicio",
+            item: new URL("/", base).toString(),
         },
         {
             "@type": "ListItem",
-            "position": 2,
-            "name": "Familias",
-            "item": Astro.site ? new URL("/familias", Astro.site).href : "/familias"
+            position: 2,
+            name: title,
+            item: new URL(`/familias/${slug}`, base).toString(),
         },
-        {
-            "@type": "ListItem",
-            "position": 3,
-            "name": title,
-            "item": Astro.site ? new URL(`/familias/${slug}`, Astro.site).href : `/familias/${slug}`
-        }
-    ]
+    ],
 };
+
 const specs = entry!.data.especificaciones;
 ---
 
-<Layout title={`${title} | NVM`} description={shortDesc}>
+<Layout
+        title={metaTitle}
+        description={metaDescription}
+        canonical={metaCanonical}
+        ogImage={metaOgImage}
+>
+
     <!-- HERO -->
     <header class="relative isolate overflow-hidden">
         <div class="absolute inset-0 ">

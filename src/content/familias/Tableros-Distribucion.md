@@ -34,7 +34,9 @@ productos:
   - nombre: "Tableros de Distribucion Industrial"
     descripcion: "Solución robusta para operación industrial y cargas de alta demanda. Integra configuraciones de distribución orientadas a confiabilidad, selectividad y continuidad del proceso, con componentes adecuados para trabajo pesado y condiciones ambientales más agresivas. Ideal para plantas, cuartos eléctricos principales y procesos con motores o cargas críticas."
     imagen: "../../assets/distribucion/TableroDistribucionPosterior4.jpeg"
+
 seo:
-  title: "Distribución | NVM"
-  description: "Tableros de distribución confiables con materiales certificados."
+  title: "Tableros de distribución y potencia BT | NVM"
+  description: "Tableros BT para recibir, proteger y distribuir energía. Fabricación a medida, opciones IP/IK y documentación técnica para tus proyectos."
+
 ---

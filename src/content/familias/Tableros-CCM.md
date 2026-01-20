@@ -34,5 +34,10 @@ productos:
   - nombre: "CCM – Variador de Frecuencia (VFD) / Arranque Suave"
     descripcion: "Diseñado para procesos que necesitan control de velocidad, rampas de aceleración/desaceleración o limitación de corriente de arranque. Integra variador o arrancador suave con protecciones y elementos de mando para ajuste fino del comportamiento del motor. Recomendado cuando se busca optimizar el proceso (caudal, presión, torque) y mejorar estabilidad operativa bajo cargas variables."
     imagen: "../../assets/CCM/TableroControlChiller4.jpg"
+
+seo:
+  title: "Tableros CCM centro de control de motores | NVM"
+  description: "CCM para control y protección de motores en baja tensión: DOL, estrella–triángulo, VFD/arranque suave. Diseño modular a medida."
+
 ---
 

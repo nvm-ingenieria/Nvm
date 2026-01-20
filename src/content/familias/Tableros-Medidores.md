@@ -34,4 +34,9 @@ productos:
   - nombre: "Armario de Medida y Seccionamiento (BT)"
     descripcion: "Diseñado para centralizar medición con un enfoque de operación segura y mantenimiento controlado. Integra compartimientos para equipos de medida y seccionamiento, con una distribución interna pensada para intervención técnica y orden del cableado. Prioriza seguridad operativa y claridad de la instalación, común en accesos de servicio y puntos de medición principal."
     imagen: ""
+
+seo:
+  title: "Tableros de medidores AE308 multicuentas | NVM"
+  description: "Tableros de medición BT para 6–24 cuentas: espacios para medidores, protecciones y transformadores de corriente (TC) según proyecto."
+
 ---

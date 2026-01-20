@@ -1,0 +1,33 @@
+---
+const {
+    title = "NVM",
+    description,
+    canonicalUrl,
+    ogImageUrl,
+    noIndex = false,
+    siteName = "NVM Ingeniería en Tableros",
+    locale = "es_CO",
+} = Astro.props;
+
+const robotsContent = noIndex ? "noindex,nofollow" : "index,follow";
+---
+
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+
+<link rel="canonical" href={canonicalUrl} />
+<meta name="robots" content={robotsContent} />
+
+<meta property="og:locale" content={locale} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+<meta name="twitter:image" content={ogImageUrl} />
+

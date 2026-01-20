@@ -45,15 +45,22 @@ const familias = defineCollection({
             )
             .optional(),
 
-        seo: z
-            .object({
-                title: z.string().optional(),
-                description: z.string().optional(),
-                canonical: z.string().url().optional(),
-                ogImage: z.string().url().optional(),
-            })
-            .optional(),
-    }),
+            seo: z
+                .object({
+                    title: z.string().optional(),
+                    description: z.string().optional(),
+
+                    canonical: z
+                        .union([z.string().url(), z.string().regex(/^\/.+/)])
+                        .optional(),
+
+                    ogImage: z
+                        .union([z.string().url(), z.string().regex(/^\/.+/)])
+                        .optional(),
+                })
+                .optional(),
+
+        }),
 });
 
 export const collections = { familias };
