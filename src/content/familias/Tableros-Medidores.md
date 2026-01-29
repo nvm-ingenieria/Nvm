@@ -2,7 +2,7 @@
 title: "Tableros de Medidores"
 excerpt: "Tableros para medición y distribución en baja tensión, organizados por cuentas y preparados para instalación de equipos de medida."
 description: "Los tableros de medidores están diseñados para centralizar y organizar la medición de energía en instalaciones de baja tensión, facilitando el control y la administración del consumo por usuario o cuenta. Integran espacios para medidores, protecciones asociadas y el cableado requerido para una instalación segura y ordenada, con opciones para incorporar equipos de medición y transformadores de corriente según el proyecto. Se fabrican a la medida, con alternativas para uso interior o exterior y condiciones ambientales exigentes (incluyendo corrosivas, según especificación), no diseñados para áreas clasificadas."
-cover: "../../assets/CCM/QuitarMarquillaEsquina, TableroChillerFrontal1.jpg"
+cover: "../../assets/CCM/TableroChillerFrontal1.jpg"
 order: 6
 whatsappMessage: "Hola, me interesa recibir mas informacion sobre la familia {familia}."
 

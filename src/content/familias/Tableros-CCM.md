@@ -2,7 +2,7 @@
 title: "Tableros CCM"
 excerpt: "Tableros diseñados para controlar y proteger motores eléctricos en baja tensión, con operación segura y mantenible."
 description: "Los tableros CCM (Centro de Control de Motores) están diseñados para controlar, proteger y supervisar motores eléctricos en baja tensión. Integran elementos de maniobra (contactores/arrancadores), protecciones y señalización, organizados para facilitar operación y mantenimiento. Se fabrican a la medida del proyecto, con configuraciones según tipo de arranque y necesidades del proceso, y opciones para uso interior/exterior y ambientes exigentes (incluyendo corrosivos), no diseñados para áreas clasificadas."
-cover: "../../assets/CCM/QuitarMarquillaEsquina, TableroChillerFrontal1.jpg"
+cover: "../../assets/CCM/TableroChillerFrontal1.jpg"
 order: 5
 whatsappMessage: "Hola, me interesa recibir mas informacion sobre la familia {familia}."
 

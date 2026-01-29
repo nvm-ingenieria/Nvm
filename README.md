@@ -1,46 +1,65 @@
-# Astro Starter Kit: Basics
+![NVMlogo.svg](public/NVMlogo.svg)
+# NVM – Sitio Web Corporativo
 
-```sh
-npm create astro@latest -- --template basics
-```
+Sitio web corporativo desarrollado para **NVM**, orientado a la presentación de la empresa, su portafolio de productos y el contacto comercial.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El proyecto fue construido como un sitio estático moderno, priorizando rendimiento, claridad de navegación y buenas prácticas de SEO técnico.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Descripción del proyecto
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+Este sitio web funciona como la presencia digital principal de NVM.  
+Incluye:
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- Página principal (landing)
+- Portafolio de familias de productos
+- Páginas individuales por familia
+- Información técnica y comercial organizada
+- Accesos directos a contacto
 
-## 🧞 Commands
+La arquitectura permite que el contenido se mantenga ordenado y escalable sin complejidad innecesaria.
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Tecnologías utilizadas
 
-## 👀 Want to learn more?
+- **Astro** – Generador de sitios estáticos
+- **Tailwind CSS** – Sistema de estilos
+- **Markdown** – Gestión de contenido
+- **Astro Content Collections** – Organización y validación del contenido
+- **Astro Assets** – Optimización de imágenes
+- **Netlify** – Despliegue y hosting
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## Estructura general
+
+src/
+├─ components/ Componentes reutilizables
+├─ layouts/ Layout base del sitio
+├─ pages/ Páginas del sitio
+├─ content/
+│ └─ familias/ Contenido de familias de productos (Markdown)
+├─ assets/ Imágenes optimizadas
+├─ scripts/ Scripts de interacción
+└─ styles/ Estilos globales
+
+## Despliegue
+
+El sitio se encuentra desplegado mediante **Netlify**, con integración continua desde el repositorio.
+
+Cada actualización en la rama principal genera automáticamente una nueva versión del sitio.
+
+---
+
+## Dominio y acceso
+
+El dominio del proyecto se encuentra configurado para apuntar al despliegue en Netlify, incluyendo certificado SSL y acceso seguro mediante HTTPS.
+
+---
+
+## Autoría
+
+Desarrollado por **Daniel Sebastian Vargas Gutierrez - danielsvg27@gmail.com**  
+Ingeniero de Sistemas  

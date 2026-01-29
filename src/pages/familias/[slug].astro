@@ -24,15 +24,11 @@ const {
     cover,
     productos = [],
     seo,
-} = entry!.data as any;
+} = entry!.data;
 
 const shortDesc =
     excerpt ??
     (description ? description.replace(/\s+/g, " ").trim().slice(0, 160) + "…" : "");
-
-
-const longDesc = description ?? "";
-
 
 const WHATSAPP_PHONE = "573150032747";
 const rawMsg =
@@ -245,17 +241,12 @@ const specs = entry!.data.especificaciones;
                                                                         sizes="(min-width: 1024px) 700px, (min-width: 640px) 90vw, 100vw"
                                                                 />
                                                         ) : (
-                                                                <img
-                                                                        src="https://picsum.photos/1200/800?blur=0"
-                                                                        alt={p.nombre}
-                                                                        loading="lazy"
-                                                                        decoding="async"
-                                                                        class={`absolute inset-0 block w-full h-full ${
-                                                                            isContain ? "object-contain" : "object-cover"
-                                                                        }`}
-                                                                        sizes="(min-width: 1024px) 700px, (min-width: 640px) 90vw, 100vw"
+                                                                <div
+                                                                        class="absolute inset-0 bg-neutral-200 dark:bg-neutral-800 animate-pulse"
+                                                                        aria-hidden="true"
                                                                 />
                                                         )}
+
                                                     </div>
                                                 </div>
                                             </div>

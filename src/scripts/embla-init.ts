@@ -1,4 +1,3 @@
-// src/scripts/embla-init.ts
 import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -52,19 +51,19 @@ function initEmbla(root: Root) {
         autoplay.play();
     });
 
-    // ✅ Desktop hover (mouse)
+    // Desktop hover
     root.addEventListener("mouseenter", () => autoplay.stop(), { passive: true });
     root.addEventListener("mouseleave", () => autoplay.play(), { passive: true });
 
-    // ✅ Mobile/touch/pointer: pausa al tocar, reanuda al soltar
+    // Mobile/touch/pointer
     root.addEventListener("pointerdown", () => autoplay.stop(), { passive: true });
     root.addEventListener("pointerup", () => autoplay.play(), { passive: true });
     root.addEventListener("pointercancel", () => autoplay.play(), { passive: true });
 
-    // ✅ Extra: cuando termina el “settle” (después del swipe), reanuda seguro
+    // Reanuda seguro
     embla.on("settle", () => autoplay.play());
 
-    // ✅ Cambio de pestaña
+    // Cambio de pestaña
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) autoplay.stop();
         else autoplay.play();

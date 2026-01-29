@@ -97,9 +97,7 @@
 
     <script is:inline>
         (function () {
-            // =========================
-            // MOBILE MENU
-            // =========================
+
             const mobileBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const iconHamburger = document.getElementById('icon-hamburger');
@@ -123,16 +121,13 @@
             if (mobileBtn && mobileMenu) {
                 mobileBtn.addEventListener('click', () => setMobile(!mobileOpen));
 
-                // Cerrar cuando se hace click en cualquier link del menú (anchors)
+                // Cerrar cuando se hace click en cualquier link del menú
                 mobileMenu.addEventListener('click', (e) => {
                     const a = e.target && e.target.closest ? e.target.closest('a') : null;
                     if (a) setMobile(false);
                 });
             }
 
-            // =========================
-            // DESKTOP PORTAFOLIO MENU (hover estable + click)
-            // =========================
             const famBtn = document.getElementById('desktop-familias-btn');
             const famMenu = document.getElementById('desktop-familias-menu');
 
@@ -186,38 +181,34 @@
                 });
 
                 if (canHover && wrapper) {
-                    // Hover: abrir al entrar, cerrar con delay al salir
+
                     wrapper.addEventListener('mouseenter', openMenu);
                     wrapper.addEventListener('mouseleave', closeMenuDelayed);
 
-                    // Si el mouse entra al menú, cancela el cierre (por el gap)
+
                     famMenu.addEventListener('mouseenter', openMenu);
                     famMenu.addEventListener('mouseleave', closeMenuDelayed);
 
-                    // Click también funciona (por accesibilidad)
+
                     famBtn.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         toggleMenu();
                     });
                 } else {
-                    // Touch/tablet: solo click
                     famBtn.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         toggleMenu();
                     });
 
-                    // Click fuera cierra
                     document.addEventListener('click', (e) => {
                         if (!famMenu.contains(e.target) && !famBtn.contains(e.target)) closeMenuNow();
                     });
                 }
             }
 
-            // =========================
-            // HEADER HIDE ON SCROLL (igual, pero cierra mobile si se oculta)
-            // =========================
+
             const header = document.getElementById('site-header');
             let lastScroll = window.scrollY;
             let ticking = false;
@@ -229,7 +220,6 @@
                     if (current > lastScroll && current > 50) {
                         header.style.transform = 'translateY(-100%)';
 
-                        // Si el header se oculta, no dejes el panel mobile abierto "flotando"
                         if (mobileOpen) setMobile(false);
                     } else {
                         header.style.transform = '';

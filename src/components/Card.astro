@@ -1,5 +1,4 @@
 ---
-// Card.astro
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 interface Props { title: string; description?: string; cover?: ImageMetadata; href?: string }
@@ -20,6 +19,7 @@ const { title, description = "", cover, href = "#" } = Astro.props;
             dark:focus-visible:ring-offset-gray-900">
 
         <div class="overflow-hidden">
+            {cover? (
             <Image
                     src={cover}
                     alt={title}
@@ -29,6 +29,14 @@ const { title, description = "", cover, href = "#" } = Astro.props;
                     loading="lazy"
                     decoding="async"
             />
+            ) :(
+                    <div
+                    class="w-full aspect-[4/3] bg-neutral-200 dark:bg-neutral-800"
+                    aria-hidden="true"
+                    />
+
+
+            )}
         </div>
 
         <div class="flex flex-col flex-1 p-5">
