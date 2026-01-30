@@ -34,7 +34,7 @@ La arquitectura permite que el contenido se mantenga ordenado y escalable sin co
 ---
 
 ## Estructura general
-
+```text
 src/
 ├─ components/ Componentes reutilizables
 ├─ layouts/ Layout base del sitio
@@ -44,7 +44,7 @@ src/
 ├─ assets/ Imágenes optimizadas
 ├─ scripts/ Scripts de interacción
 └─ styles/ Estilos globales
-
+```
 ## Despliegue
 
 El sitio se encuentra desplegado mediante **Netlify**, con integración continua desde el repositorio.
